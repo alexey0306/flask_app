@@ -1,0 +1,26 @@
+<!doctype html />
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/socket.io-client@2/dist/socket.io.js"></script>
+    <title>Test page</title>
+  </head>
+  <body>
+    <button onClick="javascript:createUser()">Add User</button>
+  </body>
+  <footer></footer>
+  <script type="text/javascript">
+    var socket = io('http://webserver:5000');
+    socket.on('connect', function(){
+      console.log("Connected");
+    });
+    socket.on('event', function(data){});
+    socket.on('disconnect', function(){});
+
+    function createUser(){
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {};
+      xhr.open('POST', 'http://webserver:5000/users/create');
+      xhr.send()
+    }
+  </script>
+</html>

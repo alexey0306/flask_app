@@ -4,15 +4,18 @@ from flask import Flask,jsonify,request,render_template,send_from_directory
 from app.config import DevelopmentConfig
 from celery import Celery
 from app.models import db
+from flask_socketio import SocketIO,emit
 
 # Initializing the SocketIO and Celery
 celery = Celery(__name__, broker=DevelopmentConfig.CELERY_BROKER_URL)
+socketio = SocketIO()
 
 def create_app(object_name):
     app = Flask(__name__)
     app.config.from_object(object_name)
     db.init_app(app)
     celery.conf.update(app.config)
+    socketio.init_app(app)
 
     class ContextTask(celery.Task):
         def __call__(self, *args, **kwargs):
@@ -21,6 +24,11 @@ def create_app(object_name):
 
     celery.Task = ContextTask
 
+
+    #### Handling sockets
+    @socketio.on('connect')
+    def on_connect():
+        emit('message','Successfully connected')
 
     # Import blueprints
     from app.controllers.tasks import blueprint_tasks
@@ -32,7 +40,7 @@ def create_app(object_name):
 
     @app.route('/')
     def index():
-        return jsonify("Working")
+        return render_template("index.html")
 
     # Custom HTTP error handlers
     @app.errorhandler(400)

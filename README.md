@@ -84,6 +84,32 @@ In this section we're going to install AWS CLI tools, configure the AWS profile 
 - [Configuring Terraform/Terragrunt to use AWS](#configuring-terraform/terragrunt-to-use-aws)
 
 ## Installing AWS CLI
+The AWS Command Line Interface (CLI) is a unified tool to manage your AWS services. With just one tool to download and configure, you can control multiple AWS services from the command line and automate them through scripts. In this step we're going to install **AWS CLI Version 2** on your machine. 
+
+### Linux
+
+```
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
+aws --version
+```
+
+### MacOS
+1. Download the package from [here](https://awscli.amazonaws.com/AWSCLIV2.pkg)
+2. Verify the installation
+```
+which aws
+aws --version
+```
+
+### Windows
+1. Download package from [here](https://awscli.amazonaws.com/AWSCLIV2.msi)
+2. Verify the installation
+```
+aws --version
+```
+
 
 ## Configuring AWS profile
 

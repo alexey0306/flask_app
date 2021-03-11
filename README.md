@@ -73,4 +73,21 @@ In this section we're going to install **Terragrunt**, Terraform wrapper used in
       terragrunt -help
    ```
    
+Ok, we're finished with installing the required tools, so let's configure the Terraform and Terragrunt to work with AWS. 
+
+
+# AWS Configuration
+In this section we're going to install AWS CLI tools, configure the AWS profile and configure Terraform/Terragrunt to use this profile to interact with our AWS infra. 
+
+- [Installing AWS CLI](#installing-aws-cli)
+- [Configuring AWS profile](#configuring-aws-profile)
+- [Configuring Terraform/Terragrunt to use AWS](#configuring-terraform/terragrunt-to-use-aws)
+
+## Installing AWS CLI
+
+## Configuring AWS profile
+
+## Configuring Terraform/Terragrunt to use AWS
+
+   
 

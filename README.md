@@ -83,7 +83,7 @@ Terraform supports multiple providers. For LM deployment we're going to use **Am
 - [Installing AWS CLI](#installing-aws-cli)
 - [Creating IAM user for Terraform](#creating-iam-user-for-terraform)
 - [Configuring AWS profile](#configuring-aws-profile)
-- [Configuring Terraform/Terragrunt to use AWS](#configuring-terraform/terragrunt-to-use-aws)
+- [Configuring Terraform to use AWS](#configuring-terraform-to-use-aws)
 
 ## Installing AWS CLI
 The AWS Command Line Interface (CLI) is a unified tool to manage your AWS services. With just one tool to download and configure, you can control multiple AWS services from the command line and automate them through scripts. In this step we're going to install **AWS CLI Version 2** on your machine. 
@@ -142,7 +142,7 @@ Once you finish the AWS CLI will create two files in current user's HOME folder.
 - **$HOME/.aws/credentials**
 
 
-## Configuring Terraform/Terragrunt to use AWS
+## Configuring Terraform to use AWS
 Last step is tell Terraform about our AWS credentials so in can interact with our AWS infrastructure. This is done very easy using the following command:
 ```
 export AWS_PROFILE=lazymaestro

@@ -6,6 +6,7 @@ This document contains all the information required to deploy and run LM compone
 - [Terraform](#terraform)
 - [Terragrunt](#terragrunt)
 - [Installing Terraform and Terragrunt](#installing-terraform-and-terragrunt)
+- [Configuring AWS](#configuring-aws)
 
 # Infrastructure as a Code (IaC)
 What is Infrastructure as a Code? IaC is the process of managing and provisioning infrastructure through machine-readable definition files, rather than physical hardware configuration or interactive configuration tools. It can use either scripts or declarative definitions, rather than manual processes
@@ -76,8 +77,8 @@ In this section we're going to install **Terragrunt**, Terraform wrapper used in
 Ok, we're finished with installing the required tools, so let's configure the Terraform and Terragrunt to work with AWS. 
 
 
-# AWS Configuration
-In this section we're going to install AWS CLI tools, configure the AWS profile and configure Terraform/Terragrunt to use this profile to interact with our AWS infra. 
+# Configuring AWS
+Terraform supports multiple providers. For LM deployment we're going to use **Amazon Web Services**. To interact with our AWS Infrastructure **Terraform/Terragrunt** requires **Access Keys**. In the section below we're going to install AWS CLI tools, configure the AWS profile and configure Terraform/Terragrunt to use this profile (and its credentials) to interact with our AWS infra. 
 
 - [Installing AWS CLI](#installing-aws-cli)
 - [Configuring AWS profile](#configuring-aws-profile)
@@ -96,6 +97,7 @@ aws --version
 ```
 
 ### MacOS
+
 1. Download the package from [here](https://awscli.amazonaws.com/AWSCLIV2.pkg)
 2. Verify the installation
 ```

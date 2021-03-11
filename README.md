@@ -5,7 +5,7 @@ This document contains all the information required to deploy and run LM compone
 - [Infrastructure as a Code](#infrastructure-as-a-code)
 - [Terraform](#terraform)
 - [Terragrunt](#terragrunt)
-- [Getting started with LM IaC](#getting-started-with-lm-iac)
+- [Installing Terraform and Terragrunt](#installing-terraform-and-terragrunt)
 
 # Infrastructure as a Code (IaC)
 What is Infrastructure as a Code? IaC is the process of managing and provisioning infrastructure through machine-readable definition files, rather than physical hardware configuration or interactive configuration tools. It can use either scripts or declarative definitions, rather than manual processes
@@ -22,11 +22,10 @@ For more information about Terraform check the [official documentation](https://
 # Terragrunt
 Terragrunt is a thin wrapper that provides extra tools for keeping your configurations DRY, working with multiple Terraform modules, and managing remote state.
 
-# Getting Started
+# Installing Terraform and Terragrunt
 In this section you will find information how to install **Terraform** and **Terragrunt**, tools required to work with LM IaC
 
 ## Step 1. Installing Terraform
-In this section we're going to install Terraform on your machine. 
 
 ### Installing Terraform on Linux
 
@@ -65,7 +64,7 @@ terraform -help
 ## Step 3. Installing Terragrunt
 In this section we're going to install **Terragrunt**, Terraform wrapper used in the LM project to create multiple environments. To install Terragrunt please follow these steps:
 
-1. Go to [Releases] page and download corresponding package
+1. Go to [Releases](https://github.com/gruntwork-io/terragrunt/releases) page and download corresponding package
 2. Rename the downloaded file to **terragrunt**
 3. Add execute permissions to this file
 4. Move this file to the any directory, configured in your **PATH**
@@ -73,11 +72,5 @@ In this section we're going to install **Terragrunt**, Terraform wrapper used in
    ```
       terragrunt -help
    ```
-
-
-
-
-
-
-
+   
 

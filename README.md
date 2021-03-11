@@ -128,7 +128,19 @@ It's recommended to create a separate IAM user for Terraform with its own creden
 10. Once the user is created download the **CSV file with credentials**. 
 
 ## Configuring AWS profile
-In this section we're going to configure the AWS profile. Basically profile consists of credentials, default region and some additional information. 
+In this section we're going to configure the AWS profile. Basically profile consists of credentials, default region and some additional information. To create the profile type the following command:
+```
+aws configure --profile 
+AWS Access Key ID [None]: <Your AWS Access Key ID here>
+AWS Secret Access Key [None]: <Your AWS Secret Access Key here>
+Default region name [None]: <Your region here>
+Default output format []: <Leave it as default>
+
+```
+Once you finish the AWS CLI will create two files in current user's HOME folder. 
+- **$HOME/.aws/config**
+- **$HOME/.aws/credentials**
+
 
 ## Configuring Terraform/Terragrunt to use AWS
 

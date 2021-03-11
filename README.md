@@ -81,6 +81,7 @@ Ok, we're finished with installing the required tools, so let's configure the Te
 Terraform supports multiple providers. For LM deployment we're going to use **Amazon Web Services**. To interact with our AWS Infrastructure **Terraform/Terragrunt** requires **Access Keys**. In the section below we're going to install AWS CLI tools, configure the AWS profile and configure Terraform/Terragrunt to use this profile (and its credentials) to interact with our AWS infra. 
 
 - [Installing AWS CLI](#installing-aws-cli)
+- [Creating IAM user for Terraform](#creating-iam-user-for-terraform)
 - [Configuring AWS profile](#configuring-aws-profile)
 - [Configuring Terraform/Terragrunt to use AWS](#configuring-terraform/terragrunt-to-use-aws)
 
@@ -112,8 +113,22 @@ aws --version
 aws --version
 ```
 
+## Creating IAM user for Terraform.
+It's recommended to create a separate IAM user for Terraform with its own credentials. To create an IAM user please follow these steps:
+
+1. [Login](https://console.aws.amazon.com) to AWS Console
+2. Go to IAM service
+3. On the left panel click **Users**
+4. Click **Add user** button
+5. In the **User name** field type **terraform**
+6. In the **Select AWS access type** check only **Programmatic access**. Click **Next**
+7. In the Next window give this user the **Administrator** access rights. It can be done in multiple ways and it depends on your current configuration. Click **Next**
+8. Click **Next**
+9. Review your configuration and if everything is ok, click **Create User**
+10. Once the user is created download the **CSV file with credentials**. 
 
 ## Configuring AWS profile
+In this section we're going to configure the AWS profile. Basically profile consists of credentials, default region and some additional information. 
 
 ## Configuring Terraform/Terragrunt to use AWS
 

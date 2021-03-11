@@ -22,8 +22,8 @@ For more information about Terraform check the [official documentation](https://
 # Terragrunt
 Terragrunt is a thin wrapper that provides extra tools for keeping your configurations DRY, working with multiple Terraform modules, and managing remote state.
 
-# Getting with LM IaC
-In this section you will find information of how to deploy the LM components in the AWS cloud. Terraform supports multiple providers and in this particular section we will be using **Terraform for AWS**
+# Getting Started
+In this section you will find information how to install **Terraform** and **Terragrunt**, tools required to work with LM IaC
 
 ## Step 1. Installing Terraform
 In this section we're going to install Terraform on your machine. 
@@ -55,6 +55,29 @@ sudo yum -y install terraform
 
 ### Installing Terraform on Windows
 Check [here](https://learn.hashicorp.com/tutorials/terraform/install-cli?in=terraform/aws-get-started)
+
+## Step 2. Verify Terraform installation
+To verify that Terraform has been successfully installed and properly configured type the following command: 
+```
+terraform -help
+```
+
+## Step 3. Installing Terragrunt
+In this section we're going to install **Terragrunt**, Terraform wrapper used in the LM project to create multiple environments. To install Terragrunt please follow these steps:
+
+1. Go to [Releases] page and download corresponding package
+2. Rename the downloaded file to **terragrunt**
+3. Add execute permissions to this file
+4. Move this file to the any directory, configured in your **PATH**
+5. Verify that Terragrunt has been successfully installed
+   ```
+      terragrunt -help
+   ```
+
+
+
+
+
 
 
 

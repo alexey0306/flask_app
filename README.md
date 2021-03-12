@@ -156,16 +156,16 @@ Terraform is using **state files** to store all the information about our infras
 By default state is stored on a local machine in a file called **terraform.tfstate**. However Terraform provides a way to store this State file in a remote location. For LM we will be using S3 bucket to store our state files.
 
 ## State Locking
-This is very important since **all Terraform configuration is stored in one single file**. THis is why it's very important to provide **State locking** feature which is used to prevent concurrent runs on the same state file.  
+This is very important since **all Terraform configuration is stored in one single file**. THis is why it's very important to provide **State locking** feature which is used to prevent concurrent runs on the same state file. 
 
+In this project we will be using **AWS DynamoDB** as a Locking mechanism. The DynamoDB table is keyed on “LockID” which is set as a bucketName/path, so as long as we have a unique combination of this we don’t have any problem in acquiring locks and running everything in a safe way
 
+# Creating S3 Backend with State lock
+S3 bucket configuration is located in **global/<account_id>/s3State**. File includes the following commands:
+| Name | Description | 
+| ---- | ----------- |
+| **locals** | List of configurable variables | 
+| **provider** | Defines the provider for Terraform. In our case it's **AWS** | 
+| **module** | Used to include the module that will be used to create S3 bucket | 
 
-
-## Creating S3 Backend
-To create S3 bucket to store our Terraform state file, please follow these steps
-
-
-
-
-   
 

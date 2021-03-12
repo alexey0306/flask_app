@@ -7,6 +7,7 @@ This document contains all the information required to deploy and run LM compone
 - [Terragrunt](#terragrunt)
 - [Installing Terraform and Terragrunt](#installing-terraform-and-terragrunt)
 - [Configuring AWS](#configuring-aws)
+- [Creating S3 backend](#creating-s3-backend)
 
 # Infrastructure as a Code (IaC)
 What is Infrastructure as a Code? IaC is the process of managing and provisioning infrastructure through machine-readable definition files, rather than physical hardware configuration or interactive configuration tools. It can use either scripts or declarative definitions, rather than manual processes
@@ -147,6 +148,24 @@ Last step is tell Terraform about our AWS credentials so in can interact with ou
 ```
 export AWS_PROFILE=lazymaestro
 ```
+
+# Terraform State
+Terraform is using **state files** to store all the information about our infrastructure. This State file is basically a mapping between your configuration and your real physical resources in AWS Cloud. This is the most important file in Terraform. 
+
+## Remote backend
+By default state is stored on a local machine in a file called **terraform.tfstate**. However Terraform provides a way to store this State file in a remote location. For LM we will be using S3 bucket to store our state files.
+
+## State Locking
+This is very important since **all Terraform configuration is stored in one single file**. THis is why it's very important to provide **State locking** feature which is used to prevent concurrent runs on the same state file.  
+
+
+
+
+## Creating S3 Backend
+To create S3 bucket to store our Terraform state file, please follow these steps
+
+
+
 
    
 

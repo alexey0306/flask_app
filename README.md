@@ -192,6 +192,12 @@ To create an S3 bucket as our Remote backend please do the following:
    ```
    terraform apply
    ```
+   
+The **terraform apply** command will do the following:
+1. Create an S3 bucket called **terraform-state-config-locks-<account_id>**
+2. Create the AWS DynamoDB table called **terraform-locks**
+
+Once it finishes please go to your AWS Account and make that all AWS resources have been successfully created. You can always destroy all resource you've created by running **terraform destroy** command
 
 
 

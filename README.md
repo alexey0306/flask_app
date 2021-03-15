@@ -205,9 +205,38 @@ Once it finishes please go to your AWS Account and make that all AWS resources h
 
 Ok, Terraform part is done, and from now on we will be using **terragrunt** to manage AWS resources. The most important part regarding **terragrunt** is that allows us to create a separate environments with its own list of resources and variables. 
 
-We won't dive deep into how each AWS resource is created, but I will explain pattern used to create all current AWS resources and will be used to create other AWS resources in future. 
+We won't dive deep into how each AWS resource is created, but I will explain pattern used to create all current AWS resources and will be used to create other AWS resources in future.
 
+## Root Terragrunt configuration file
+Inside the **infra/<account_id>** there is a root Terragrunt file called **terragrunt.hcl**. This file is common for all created resources. Basically this file does the following: 
+1. Reads the configuration file
+   ```
+   locals {
+      common_vars = yamldecode(file("dev.yml"))
+   }
+   ```
+2. Uses an S3 bucket as the Backend to store Terraform state file
+   ```
+    remote_state {
+        backend = "s3"
+        ....
+    }  
+   ```
 
+3. Generates file with Backend configuration
+   ```
+      generate = {
+          path      = "backend.tf"
+          if_exists = "overwrite_terragrunt"
+      }
+   ```
+4. Generates file with Provider configuration
+   ```
+      generate "provider" {
+         path = "provider.tf"
+         ...
+      }
+   ```
 
 ## Creating Networking in DEV environment
 If we go to **infra/<account_id>/** folder we will see three folders: **dev**, **prod** and **staging**. Let's take a look at **dev/networking** folder. 
@@ -218,17 +247,7 @@ This folder contains a single **terragrunt.hcl**. This file contains the followi
 -------|-------------|
 | **terraform** | This command is used to run specific module. In our case we're using the Networking module from **modules/networking** |
 | **locals** | This section is used to load the variables from configuration file. In our case it's **dev.yml** file in **infra/<account_id>/dev**. |
-| **include** | This command is used to include the **terragrunt.hcl** file from the upper directory, where you can find the Backend and Provider configuration | 
-| **inputs** | List of input variables required for **networking** module, specified in **terraform** section | 
+| **include** | This command is used to include the **root Terragrunt file** from the upper directory, where you can find the Backend and Provider configuration | 
+| **inputs** | List of input variables required for **networking** module, specified in **terraform** section |
 
-
-
-
-
-
-
-
-
-
-
-
+So, what is happening when we run the **terragrunt apply** inside **infra/<account_id>/dev/networking** folder? 

@@ -177,6 +177,25 @@ S3 Bucket module is located in **modules/global/s3State**. Consists of the follo
 | **main.tf** | This file contains all Terraform instructions to create required AWS resources | 
 | **outputs.tf** | This file contains a list of variables that will be displayed after the Terraform finishes creating the AWS resources | 
 
+## Creating the S3 Bucket
+To create an S3 bucket as our Remote backend please do the following: 
+1. Go to **global/<account_id>/s3State**
+2. Run the following command
+   ``` 
+   terraform init 
+   ```
+3. If everything is fine, run the following command
+   ```
+   terraform plan
+   ```
+4. Please check the output of **terraform plan** command and if it's OK, please run the following command:
+   ```
+   terraform apply
+   ```
+
+
+
+
 
 
 

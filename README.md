@@ -250,4 +250,4 @@ This folder contains a single **terragrunt.hcl**. This file contains the followi
 | **include** | This command is used to include the **root Terragrunt file** from the upper directory, where you can find the Backend and Provider configuration | 
 | **inputs** | List of input variables required for **networking** module, specified in **terraform** section |
 
-So, what is happening when we run the **terragrunt apply** inside **infra/<account_id>/dev/networking** folder? 
+To create Networking run the following command inside **infra/<account_id>/dev/networking** folder. Please check the output (list of AWS resources to be created/updated/deleted) and if everything is fine type **yes** and click **Enter**

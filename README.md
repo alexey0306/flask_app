@@ -161,11 +161,22 @@ This is very important since **all Terraform configuration is stored in one sing
 In this project we will be using **AWS DynamoDB** as a Locking mechanism. The DynamoDB table is keyed on “LockID” which is set as a bucketName/path, so as long as we have a unique combination of this we don’t have any problem in acquiring locks and running everything in a safe way
 
 # Creating S3 Backend with State lock
-S3 bucket configuration is located in **global/<account_id>/s3State**. File includes the following commands:
+S3 bucket configuration is located in **global/<account_id>/s3State**. File **main.tf** contains all the required instructions:
 | Name | Description | 
 | ---- | ----------- |
 | **locals** | List of configurable variables | 
 | **provider** | Defines the provider for Terraform. In our case it's **AWS** | 
-| **module** | Used to include the module that will be used to create S3 bucket | 
+| **module** | Used to include the module that will be used to create S3 bucket. Please note that we're passing two variables to this module: **region = local.region** and **default_tags=local.default_tags**. These variables are taken from **locals** section | 
+
+## S3 Bucket Module
+
+S3 Bucket module is located in **modules/global/s3State**. Consists of the following files
+| File | Description |
+|------|------------ |
+| **variables.tf** | List of variables used by these module. We pass the variables from **main.tf** file in **global/<account_id>/s3state** folder.|
+| **main.tf** | This file contains all Terraform instructions to create required AWS resources | 
+| **outputs.tf** | This file contains a list of variables that will be displayed after the Terraform finishes creating the AWS resources | 
+
+
 
 

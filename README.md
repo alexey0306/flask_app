@@ -205,7 +205,7 @@ Once it finishes please go to your AWS Account and make that all AWS resources h
 
 Ok, Terraform part is done, and from now on we will be using **terragrunt** to manage AWS resources. The most important part regarding **terragrunt** is that allows us to create a separate environments with its own list of resources and variables. 
 
-We won't dive deep into how each AWS resource is created, but I will explain pattern used to create all current AWS resources and will be used to create other AWS resources in future.
+We won't dive deep into how each AWS resource is created, but I will explain pattern used to create all current AWS resources and will be used to create other AWS resources in future. As an example, we will be using the **Networking** deployment.
 
 ## Root Terragrunt configuration file
 Inside the **infra/<account_id>** there is a root Terragrunt file called **terragrunt.hcl**. This file is common for all created resources. Basically this file does the following: 
@@ -251,3 +251,27 @@ This folder contains a single **terragrunt.hcl**. This file contains the followi
 | **inputs** | List of input variables required for **networking** module, specified in **terraform** section |
 
 To create Networking run the following command inside **infra/<account_id>/dev/networking** folder. Please check the output (list of AWS resources to be created/updated/deleted) and if everything is fine type **yes** and click **Enter**
+
+
+## Creating Networking in other Environments
+Ok, once the Networking has been successfully created in DEV environment, we will want to create Networking for Production, Staging or other environments? How to do that? Very simple with the following steps:
+1. Create a new folder in **infra/<account_id>** for specific environment. For example, **staging**. 
+2. Copy **dev.yml** to this folder and rename it to **staging.yml**
+3. Make changes in this file based on your environment
+4. Copy the root Terragrunt HCL file from **dev** folder. Update **locals** section with a new **staging.yml** file. 
+   ```
+     locals {
+       common_vars = yamldecode(file("staging.yml"))
+     }
+   ```
+5. Inside **staging** folder create **networking** folder and copy **terragrunt.hcl** file from **dev/networking/** folder. Make the following changes: 
+   ```
+   locals {
+      common_vars = yamldecode(file(find_in_parent_folders("staging.yml")))
+   }
+   ```
+6. Run the following command inside **staging/networking** folder
+   ```
+      terragrunt apply
+   ```
+7. Check the output if everything is correct, then type **yes** and click Enter
